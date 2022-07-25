@@ -1,0 +1,60 @@
+class Solution {
+        bool cmp(string s1, string s2, int hsh[26])
+        {
+            int i=0,j=0;
+                
+               
+                while(i<s1.length() && j<s2.length())
+                {
+                      if( hsh[s1[i]-'a'] < hsh[s2[j]-'a'])
+                      {
+                              return true;       
+                      }
+                      else if(hsh[s1[i]-'a'] == hsh[s2[j]-'a'])
+                      {
+                              
+                      }
+                      else
+                      {
+                              return false;
+                      }
+                        i++;
+                        j++;                        
+                }
+                
+                if(s1.length()>s2.length())
+                {
+                      return false;  
+                }
+                return true;
+        }
+        
+public:
+    bool isAlienSorted(vector<string>& w, string order) {
+        
+            int hsh[26];
+            int num=1;
+            for(int i=0;i<order.length();i++)
+            {
+                   hsh[order[i]-'a']=num++;                     
+            }
+            
+            
+            int i=0,j=1;
+            
+            while(i<(w.size()-1))
+            {
+                    
+                    if(!cmp(w[i],w[j],hsh))
+                    {                            
+                            return false;
+                    }
+                    
+                    i++;
+                    j++;
+            }
+            
+            return true;
+            
+    }
+};
