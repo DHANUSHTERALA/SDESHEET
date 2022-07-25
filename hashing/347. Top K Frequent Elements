@@ -1,0 +1,38 @@
+class Solution {
+        static bool compare(pair<int,int> a, pair<int,int> b)
+        {
+                return (a.second>b.second);                
+        }
+public:
+    vector<int> topKFrequent(vector<int>& v, int k) {
+        
+            int n=v.size();
+            unordered_map<int,int> m;
+            for(int i=0;i<n;i++)
+            {
+                    m[v[i]]++;
+                    
+            }
+            
+            vector<pair<int,int>> vec;
+            for(auto val:m)
+            {
+                    vec.push_back({val.first,val.second});                   
+            }
+            
+            sort(vec.begin(),vec.end(),compare);
+            vector<int> ans;
+            
+            for(auto val:vec)
+            {
+                 if(k!=0)
+                 {
+                         ans.push_back(val.first);
+                         k--;
+                 }
+            }
+            
+            
+            return ans;
+    }
+};
