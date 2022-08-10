@@ -1,0 +1,28 @@
+class Solution {
+        
+        int sumll(TreeNode *root, bool leaf)
+        {
+                if(root == NULL)
+                {
+                        return 0;
+                }
+                
+                if(root->left==NULL && root->right==NULL && leaf)
+                {
+                        return root->val;
+                }
+                
+                int lh=sumll(root->left,true);
+                int rh=sumll(root->right,false);
+                
+                return (lh+rh);
+        }
+public:
+    int sumOfLeftLeaves(TreeNode *root) {
+        
+            return sumll(root,false);
+            
+            
+            
+    }
+};
